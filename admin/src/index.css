@@ -23,6 +23,10 @@ hr {
   background-color: #a9a9a9;
 }
 
+.app-content {
+  display: flex;
+}
+
 /* .app {
   width: 80%;
   margin: auto;
