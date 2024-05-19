@@ -2,7 +2,6 @@ import foodModel from "../models/foodModel.js";
 import fs from "fs"
 
 // add food item
-
 const addFood = async (req, res) => {
   let image_filename = `${req.file.filename}`;
   const food = new foodModel({
@@ -32,4 +31,21 @@ const listFood = async (req, res) => {
   }
 }
 
-export { addFood, listFood }
+// remove food item
+const removeFood = async (req,res) => {
+  try {
+    // first find food item to delete & save in variable
+    const food = await foodModel.findById(req.body.id);
+    // then remove img from local folder
+    fs.unlink(`uploads/${food.image}`, () => {})
+    // then delete item from db
+    await foodModel.findByIdAndDelete(req.body.id);
+
+    res.json({ success: true, message: "Food removed"});
+  } catch (error) {
+    console.log(error);
+    res.json({ success: false, message: error});
+  }
+}
+
+export { addFood, listFood, removeFood }
