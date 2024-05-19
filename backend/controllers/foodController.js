@@ -12,13 +12,12 @@ const addFood = async (req, res) => {
     category: req.body.category,
     image: image_filename
   })
-
   try {
     await food.save();
-    res.jason({success: true, message: "Food added!"});
+    res.json({ success: true, message: "Food added!" });
   } catch (error) {
     console.log(error);
-    res.json({success: false, message: "Error while saving the product"})
+    res.json({ success: false, message: "Error while saving the product" })
   }
 }
 
