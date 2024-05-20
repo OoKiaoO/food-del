@@ -7,8 +7,8 @@ import axios from "axios"
 import { toast } from 'react-toastify'
 // import { useEffect } from 'react'
 
-const Add = () => {
-  const url = "http://localhost:4000";
+// eslint-disable-next-line react/prop-types
+const Add = ({url}) => {
   const [image, setImage] = useState(false)
   const [data, setData] = useState({
                             name: "",
@@ -83,8 +83,8 @@ const Add = () => {
               <option value="Desserts">Desserts</option>
               <option value="Sandwich">Sandwich</option>
               <option value="Cake">Cake</option>
-              <option value="Pure Veg">Pur Veg</option>
-              <option value="Paste">Paste</option>
+              <option value="Pure Veg">Vegetarian</option>
+              <option value="Pasta">Pasta</option>
               <option value="Noodles">Noodles</option>
             </select>
           </div>
