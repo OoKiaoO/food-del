@@ -6,7 +6,28 @@ import validator from "validator";
 
 //login user
 const loginUser = async (req, res) => {
+  const {email, password} = req.body;
 
+  try {
+    // checking if user exists looking for email existence
+    const user = await userModel.findOne({email});
+    // if no match found, send error message
+    if (!user) {
+      return res.json({success: false, message: "User does not exit"});
+    }
+    // after finding user email match, sending user pass to bcrypt to check if entered pass matches the one stored in db
+    const isMatch = await bcrypt.compare(password, user.password);
+    if (!isMatch) {
+      return res.json({success: false, message: "Invalid credentials"})
+    }
+
+    const token = createToken(user._id);
+    res.json({success: true, token})
+
+  } catch (error) {
+    console.log(error);
+    res.json({success: false, message: "Failed login process"})
+  }
 }
 
 const createToken = (id) => {
