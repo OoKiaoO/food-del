@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { food_list } from "../assets/assets";
 // by setting and exporting the context provider, we make the contextValue variable accessible throughout all components
 // in this case we used it to make the food_listarray accessible throughout al components to display food choices
@@ -8,6 +8,9 @@ export const StoreContext = createContext(null)
 const StoreContextProvider = (props) => {
 
   const [cartItems, setCartItems] = useState({});
+  // adding url into contextValue so it is accessible throughout the app
+  const url = "http://localhost:4000/";
+  const [token, setToken] = useState("");
 
 // addToCart logic will check if the item id is already present inside the cartItems state, if not is going to add it
   const addToCart = (itemId) => {
@@ -44,7 +47,10 @@ const StoreContextProvider = (props) => {
     setCartItems,
     addToCart,
     removeFromCart,
-    getTotalCartAmount
+    getTotalCartAmount,
+    url,
+    token,
+    setToken
   }
   return (
     <StoreContext.Provider value={contextValue}>
