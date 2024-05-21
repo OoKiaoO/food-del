@@ -11,7 +11,7 @@ const LoginPopup = ({setShowLogin}) => {
   // accessing url through contextValue
   const { url, setToken } = useContext(StoreContext);
 
-  const [currentState, setCurrentState] = useState("Sign Up")
+  const [currentState, setCurrentState] = useState("Login")
   // creating new state var where to save user info
   const [data, setData] = useState({
     name: "",

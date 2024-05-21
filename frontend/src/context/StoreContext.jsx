@@ -14,16 +14,23 @@ const StoreContextProvider = (props) => {
   const [food_list, setFoodList] = useState([]);
 
 // addToCart logic will check if the item id is already present inside the cartItems state, if not is going to add it
-  const addToCart = (itemId) => {
+  const addToCart = async (itemId) => {
     if (!cartItems[itemId]) {
       setCartItems((prev) => ({...prev, [itemId]: 1}))
     } else {
       setCartItems((prev) => ({...prev, [itemId]: prev[itemId] + 1}))
     }
+    // if user logged in & adds item to cart, this info will also be stored in db
+    if (token) {
+      await axios.post(url + "/api/cart/add", {itemId}, {headers: {token}})
+    }
   }
 
-  const removeFromCart = (itemId) => {
+  const removeFromCart = async (itemId) => {
     setCartItems((prev) => ({...prev, [itemId]: prev[itemId] - 1}))
+    if (token) {
+      await axios.post(url + "/api/cart/remove", {itemId}, {headers: {token}});
+    }
   }
 
   // will collect the info relative to cartItems & display them in the console
@@ -50,6 +57,11 @@ const StoreContextProvider = (props) => {
     setFoodList(response.data.data);
   }
 
+  const loadCartData = async (token) => {
+    const response = await axios.post(url + "/api/cart/get", {}, {headers: {token}});
+    setCartItems(response.data.cartData);
+  }
+
   // using useEff. hook to prevent user token to be lost on page refresh when logged in
   // useEff hook gets called on every page reload
   // running fetchFoodLIst func whenever page is loaded (since it's an async function, wrapping into another async func to make sure it is resolved before page gets loaded)
@@ -60,6 +72,8 @@ const StoreContextProvider = (props) => {
       if (localStorage.getItem("token")) {
       // if present we store it in the token state var
         setToken(localStorage.getItem("token"));
+        // running func to presist user cart data on page refresh
+        await loadCartData(localStorage.getItem("token"));
       }
     }
     loadData();

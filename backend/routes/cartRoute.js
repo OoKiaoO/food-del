@@ -8,6 +8,6 @@ const cartRouter = express.Router();
 // creating routes associated w/ cartRouter
 cartRouter.post("/add", authMiddleware, addToCart)
 cartRouter.post("/remove", authMiddleware, removeFromCart)
-cartRouter.get("/get", authMiddleware, getCart)
+cartRouter.post("/get", authMiddleware, getCart)
 
 export default cartRouter
