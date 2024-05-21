@@ -3,12 +3,22 @@
 import React, { useContext, useState } from 'react'
 import './Navbar.css'
 import { assets } from '../../assets/assets'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { StoreContext } from '../../context/StoreContext';
 
 const Navbar = ({setShowLogin}) => {
   const [ menu, setMenu ] = useState("home");
   const { getTotalCartAmount, token, setToken } = useContext(StoreContext);
+  const navigate = useNavigate();
+  
+  const logout = () => {
+    // to logout user we hve to remove the token from local storage
+    localStorage.removeItem("token");
+    // after we remove the token from state var by setting it to empty string
+    setToken("");
+    // afterwards, we will redirect user to homepage w/ useNavigate hook
+    navigate("/");
+  }
 
   return (
     <div className='navbar'>
@@ -32,7 +42,7 @@ const Navbar = ({setShowLogin}) => {
             <ul className='nav-profile-dropdown'>
               <li><img src={assets.bag_icon} alt="" />Orders</li>
               <hr />
-              <li><img src={assets.logout_icon} alt="" />Logout</li>
+              <li onClick={logout} ><img src={assets.logout_icon} alt="" />Logout</li>
             </ul>
           </div>}
       </div>

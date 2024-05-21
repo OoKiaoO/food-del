@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import { food_list } from "../assets/assets";
 // by setting and exporting the context provider, we make the contextValue variable accessible throughout all components
 // in this case we used it to make the food_listarray accessible throughout al components to display food choices
@@ -40,6 +40,16 @@ const StoreContextProvider = (props) => {
     }
     return totalAmount;
   }
+
+  // using useEff. hook to prevent user token to be lost on page refresh when logged in
+  // useEff hook gets called on every page reload
+  useEffect(() => {
+    // check if token present in localStorage
+    if (localStorage.getItem("token")) {
+      // if present we store it in the token state var
+      setToken(localStorage.getItem("token"));
+    }
+  },[])
 
   const contextValue = {
     food_list,
