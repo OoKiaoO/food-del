@@ -33,9 +33,9 @@ const LoginPopup = ({setShowLogin}) => {
     let newUrl = url;
     // checking if current state is login & adjust api endpoint url accordingly
     if (currentState === "Login") {
-      newUrl += "api/user/login";
+      newUrl += "/api/user/login";
     } else {
-      newUrl += "api/user/register";
+      newUrl += "/api/user/register";
     }
     // calling api w/ axios with post method (same as server setup file)
     const response = await axios.post(newUrl, data);
