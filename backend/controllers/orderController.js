@@ -53,9 +53,24 @@ const placeOrder = async (req,res) => {
   } catch (error) {
     console.log(error);
     res.json({success: false, message: "Error while connecting to Stripe api"})
-
   }
-
 }
 
-export { placeOrder }; 
+const verifyOrder = async (req, res) => {
+  const {orderId, success} = req.body;
+
+  try {
+    if (success == "true") {
+      await orderModel.findByIdAndUpdate(orderId, {payment: true});
+      res.json({success: true, message: "Successfully updated payment status"})
+    } else {
+      await orderModel.findByIdAndDelete(orderId);
+      res.json({success: false, message: "Payment failed"});
+    }
+  } catch (error) {
+    console.log(error);
+    res.json({success: false, message: "Error in updating payment details"});
+  }
+}
+
+export { placeOrder, verifyOrder }; 
