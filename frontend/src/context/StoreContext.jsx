@@ -20,7 +20,7 @@ const StoreContextProvider = (props) => {
     } else {
       setCartItems((prev) => ({...prev, [itemId]: prev[itemId] + 1}))
     }
-    // if user logged in & adds item to cart, this info will also be stored in db
+    // if user logged in & adds item to cart, this info will be stored in db
     if (token) {
       await axios.post(url + "/api/cart/add", {itemId}, {headers: {token}})
     }
