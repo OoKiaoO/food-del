@@ -6,7 +6,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 // placing user order form frontend
 const placeOrder = async (req,res) => {
-  const frontend_url = "http://localhost:5173";
+  const frontend_url = "http://localhost:5174";
 
   try {
     const newOrder = new orderModel({
@@ -97,7 +97,7 @@ const listOrders = async (req,res) => {
 }
 
 // update order status api
-const updateStatus = async (res, res) => {
+const updateStatus = async (req, res) => {
   try {
     // find order by Id from req. & update status through req.
     await orderModel.findByIdAndUpdate(req.body.orderId, {status: req.body.status});
