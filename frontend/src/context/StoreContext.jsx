@@ -9,7 +9,7 @@ const StoreContextProvider = (props) => {
 
   const [cartItems, setCartItems] = useState({});
   // adding url into contextValue so it is accessible throughout the app
-  const url = "http://localhost:4000";
+  const url = "https://nameless-reef-81910-873bf73b9bcf.herokuapp.com";
   const [token, setToken] = useState("");
   const [food_list, setFoodList] = useState([]);
 
