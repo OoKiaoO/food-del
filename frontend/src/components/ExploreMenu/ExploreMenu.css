@@ -2,16 +2,19 @@
   display: flex;
   flex-direction: column;
   gap: 20px;
+  margin-top: 5%;
 }
 
 .explore-menu h1 {
-  color: #262626;
+  color: #49557e;
   font-weight: 500;
+  font-size: max(2.8vw, 18px);
 }
 
 .explore-menu-text {
   max-width: 60%;
-  color: #808080;
+  color: #49557e;
+  font-size: 1vw;
 }
 
 .explore-menu-list {
@@ -20,7 +23,7 @@
   align-items: center;
   gap: 30px;
   text-align: center;
-  margin: 20px 0px;
+  margin: 40px 0px;
   overflow-x: scroll;
 }
 
@@ -30,18 +33,26 @@
 }
 
 .explore-menu-list-item img {
-  width: 7.5vw;
-  min-width: 80px;
+  padding: 20px 0px;
+  margin: 0 20px;
+  width: 6vw;
+  min-width: 60px;
   cursor: pointer;
   border-radius: 50%;
   transition: 0.2s;
+  transition: all 0.3s ease-in-out;
+}
+
+.explore-menu-list-item img:hover {
+  transform: scale(1.1);
 }
 
 .explore-menu-list-item p {
   margin-top: 10px;
-  color: #747474;
-  font-size: max(1.4vw, 16px);
+  color: #49557e;
+  font-size: max(1.2vw, 16px);
   cursor: pointer;
+  transition: all 0.3s ease-in-out;
 }
 
 .explore-menu hr {
@@ -54,6 +65,10 @@
 .explore-menu-list-item .active {
   border: 4px solid tomato;
   padding: 2px;
+}
+
+.explore-menu-list-item p:hover {
+  color: tomato;
 }
 
 @media (max-width: 1050px) {

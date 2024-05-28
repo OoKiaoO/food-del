@@ -1,14 +1,15 @@
 // eslint-disable-next-line no-unused-vars
-import React from 'react'
+import React, { useState } from 'react'
 import './Header.css'
 
 const Header = () => {
+
   return (
     <div className='header'>
       <div className="header-contents">
-        <h2>Order your favorite food here</h2>
-        <p>Choose from a diverse menu featuring a delectable array of dishes crafted with the finest ingredients and culinary expertise. Our mission is to satisfiy your cravings and elevate your dining experience, one delicious meal at a time.</p>
-        <button>View Menu</button>
+        <h2>Hungry for your favorite food?</h2>
+        <p>Satisfiy your cravings, one delicious meal at a time.</p>
+        <a href="#explore-menu">Take a look</a>
       </div>
     </div>
   )

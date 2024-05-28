@@ -10,7 +10,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import Orders from './pages/Orders/Orders'
 
 const App = () => {
-  const url = "http://localhost:4000";
+  const url = "https://nameless-reef-81910-873bf73b9bcf.herokuapp.com";
 
   return (
     <div>

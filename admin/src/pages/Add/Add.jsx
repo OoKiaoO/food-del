@@ -66,7 +66,7 @@ const Add = ({url}) => {
 
         <div className="add-product-name flex-col">
           <p>Product Name</p>
-          <input onChange={onChangeHandler} value={data.name} type="text" name="name" placeholder='Typer here' />
+          <input onChange={onChangeHandler} value={data.name} type="text" name="name" placeholder='Type here' />
         </div>
 
         <div className="add-product-description flex-col">
@@ -83,7 +83,7 @@ const Add = ({url}) => {
               <option value="Desserts">Desserts</option>
               <option value="Sandwich">Sandwich</option>
               <option value="Cake">Cake</option>
-              <option value="Pure Veg">Vegetarian</option>
+              <option value="Vegan">Vegan</option>
               <option value="Pasta">Pasta</option>
               <option value="Noodles">Noodles</option>
             </select>

@@ -1,9 +1,10 @@
 .header {
-  height: 34vw;
-  margin: 30px auto;
-  background: url('/header_img.png') no-repeat;
-  background-size: contain;
+  height: 36vw;
+  margin: 35px auto;
+  background: url('/green-tomato.jpg');
+  background-size: cover;
   position: relative;
+  border-radius: 10px;
 }
 
 .header-contents {
@@ -20,23 +21,31 @@
 
 .header-contents h2 {
   font-weight: 500;
-  color: white;
-  font-size: max(4.5vw, 22px);
+  color: rgb(255, 255, 255);
+  font-size: max(4.8vw, 22px);
 }
 
 .header-contents p {
   color: white;
-  font-size: 1vw;
+  font-size: 1.5vw;
 }
 
-.header-contents button {
-  border: none;
-  color: #747474;
+.header-contents a {
+  border: 2px solid white;
+  color: white;
   font-weight: 500;
   padding: 1vw 2.3vw;
-  background-color: white;
+  background-color: #49557e;
   font-size: max(1vw, 13px);
   border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  margin-top: 3%;
+}
+
+.header-contents a:hover {
+  transform: scale(1.1);
+  background-color: tomato;
 }
 
 @media (max-width: 1050px) {
