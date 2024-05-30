@@ -9,15 +9,10 @@ const FoodItem = ({id, name, price, description, image}) => {
 
   const {cartItems, addToCart, removeFromCart} = useContext(StoreContext);
 
-  const constructImageUrl = (imageName) => {
-    const filename = imageName.split(/(food_\d+\.png)$/)[1];
-    return filename;
-  }
-
   return (
     <div className='food-item' >
       <div className="food-item-img-container">
-        <img className='food-item-img' src={`src/assets/${constructImageUrl(image)}`} alt='' />
+        <img className='food-item-img' src={`src${image}`} alt='' />
         {
           !cartItems[id] 
           ? <img className='add' onClick={() => addToCart(id)} src={assets.add_icon_white} alt='' /> 
