@@ -25,7 +25,7 @@ app.use(cors())
 connectDB();
 
 // Serve static files from the frontend/assets dir
-const assetsDir = path.join(__dirname, '../frontend/assets');
+const assetsDir = path.join(__dirname, '../frontend/src/assets');
 app.use('/assets', express.static(assetsDir))
 
 // api endpoints

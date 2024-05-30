@@ -73,7 +73,7 @@ const StoreContextProvider = (props) => {
       if (localStorage.getItem("token")) {
       // if present we store it in the token state var
         setToken(localStorage.getItem("token"));
-        // running func to presist user cart data on page refresh
+        // running func to persist user cart data on page refresh
         await loadCartData(localStorage.getItem("token"));
       }
     }

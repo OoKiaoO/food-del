@@ -2,10 +2,10 @@ import foodModel from "../models/foodModel.js";
 import fs from "fs"
 
 // helper function to contruct image URL
-// const constructImageUrl = (imageName) => {
-//   const filename = imageName.split(/(food_\d+\.png)$/)[1];
-//   return `/assets/${filename}`;
-// }
+const constructImageUrl = (imageName) => {
+  const filename = imageName.split(/(food_\d+\.png)$/)[1];
+  return `/assets/${filename}`;
+}
 
 // add food item
 const addFood = async (req, res) => {
@@ -41,7 +41,8 @@ const listFood = async (req, res) => {
     })
     res.json({ success: true, data: updatedFoods })
   } catch (error) {
-    console.log(error);
+    process.stdout.write(`Error log: ${JSON.stringify(error)}\n`);
+    // console.log(error);
     res.json({ success: false, message: "Error while getting the food models"})
   }
 }
