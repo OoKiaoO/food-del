@@ -5,8 +5,12 @@ import { StoreContext } from '../../context/StoreContext'
 import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
-  const {cartItems, food_list, removeFromCart, getTotalCartAmount, url} = useContext(StoreContext);
+  const {cartItems, food_list, removeFromCart, getTotalCartAmount} = useContext(StoreContext);
   const navigate = useNavigate();
+  const constructImageUrl = (imageName) => {
+    const filename = imageName.split(/(food_\d+\.png)$/)[1];
+    return filename;
+  }
 
   return (
     <div className='cart' >
@@ -26,7 +30,7 @@ const Cart = () => {
             return (
               <div key={index}>
                 <div className="cart-items-title cart-items-item">
-                  <img src={url + "/images/" + item.image} alt='' />
+                  <img src={`src/assets/${constructImageUrl(item.image)}`} alt='' />
                   <p>{item.name}</p>
                   <p>${item.price}</p>
                   <p>{cartItems[item._id]}</p>

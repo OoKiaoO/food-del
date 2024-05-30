@@ -1,6 +1,12 @@
 import foodModel from "../models/foodModel.js";
 import fs from "fs"
 
+// helper function to contruct image URL
+// const constructImageUrl = (imageName) => {
+//   const filename = imageName.split(/(food_\d+\.png)$/)[1];
+//   return `/assets/${filename}`;
+// }
+
 // add food item
 const addFood = async (req, res) => {
   let image_filename = `${req.file.filename}`;
@@ -24,7 +30,16 @@ const addFood = async (req, res) => {
 const listFood = async (req, res) => {
   try {
     const foods = await foodModel.find({});
-    res.json({ success: true, data: foods})
+    const updatedFoods = foods.map(food => {
+      const updatedFood = {
+        ...food._doc, // spread the existing fields
+        image: constructImageUrl(food.image) // modify image field to include the correct url
+      }
+      process.stdout.write(`Transformed Food Item: ${JSON.stringify(updatedFood)}\n`);
+      // console.log("transformed foor item", updatedFood);
+      return updatedFood;
+    })
+    res.json({ success: true, data: updatedFoods })
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: "Error while getting the food models"})

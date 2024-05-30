@@ -53,6 +53,7 @@ const StoreContextProvider = (props) => {
   const fetchFoodList = async () => {
     // calling backend api thru axios with get method (cause that is the method we setup in foodRoute file)
     const response = await axios.get(url + "/api/food/list");
+    console.log('API response', response.data.data);
     // saving data received from api into state var
     setFoodList(response.data.data);
   }
