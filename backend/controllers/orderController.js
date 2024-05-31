@@ -6,7 +6,7 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY)
 
 // placing user order form frontend
 const placeOrder = async (req,res) => {
-  const frontend_url = "https://delivery-tomato.netlify.app/";
+  const frontend_url = "https://delivery-tomato.netlify.app";
 
   try {
     const newOrder = new orderModel({
@@ -26,7 +26,7 @@ const placeOrder = async (req,res) => {
         product_data: {
           name: item.name
         },
-        unit_amount: item.price * 100 * 80
+        unit_amount: item.price * 100
       },
       quantity: item.quantity
     }))
@@ -37,7 +37,7 @@ const placeOrder = async (req,res) => {
         product_data: {
           name: "Delivery Charges"
         },
-        unit_amount: 2*100*80
+        unit_amount: 2*100
       },
       quantity: 1
     })
